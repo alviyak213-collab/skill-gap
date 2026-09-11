@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Skill Gap Analysis | SkillSaarthi</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4f6fa;
+            color: #222;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 64px;
+            background: #173b68;
+            color: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 28px;
+        }
+
+        .logo {
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .user {
+            background: white;
+            color: #173b68;
+
+            padding: 7px 15px;
+            border-radius: 20px;
+
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* ================= LAYOUT ================= */
+
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 64px);
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 220px;
+            background: white;
+
+            border-right: 1px solid #e2e5ea;
+
+            padding: 22px 12px;
+        }
+
+        .menu-item {
+            display: block;
+
+            padding: 12px 12px;
+            margin-bottom: 6px;
+
+            border-radius: 8px;
+
+            color: #333;
+            text-decoration: none;
+
+            font-size: 13px;
+        }
+
+        .menu-item:hover {
+            background: #eef4fb;
+        }
+
+        .menu-item.active {
+            background: #e5eff9;
+            color: #173b68;
+            font-weight: bold;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content {
+            flex: 1;
+            padding: 30px;
+            max-width: 1250px;
+        }
+
+        .page-title {
+            font-size: 29px;
+            margin-bottom: 7px;
+        }
+
+        .page-subtitle {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* ================= SUMMARY ================= */
+
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+
+            margin-bottom: 22px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 20px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 2px 9px rgba(0,0,0,0.06);
+        }
+
+        .summary-label {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .summary-value {
+            font-size: 25px;
+            font-weight: bold;
+            color: #173b68;
+        }
+
+        /* ================= GRID ================= */
+
+        .grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+
+            padding: 22px;
+
+            box-shadow: 0 2px 9px rgba(0,0,0,0.06);
+
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+
+            margin-bottom: 22px;
+        }
+
+        /* ================= SKILLS ================= */
+
+        .skill {
+            margin-bottom: 23px;
+        }
+
+        .skill:last-child {
+            margin-bottom: 0;
+        }
+
+        .skill-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 8px;
+        }
+
+        .skill-name {
+            font-size: 14px;
+        }
+
+        .skill-percentage {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .progress {
+            width: 100%;
+            height: 10px;
+
+            background: #e5e5e5;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+
+            background: #2f9e5b;
+        }
+
+        .skill-bottom {
+            display: flex;
+            justify-content: space-between;
+
+            margin-top: 8px;
+
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* ================= BADGES ================= */
+
+        .badge {
+            padding: 4px 9px;
+
+            border-radius: 12px;
+
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .high {
+            background: #ffe1e1;
+            color: #c62828;
+        }
+
+        .medium {
+            background: #fff0c7;
+            color: #a66a00;
+        }
+
+        .no-gap {
+            background: #dff5e6;
+            color: #237a40;
+        }
+
+        /* ================= AI ANALYSIS ================= */
+
+        .analysis {
+            background: #f0f6fd;
+
+            border-left: 4px solid #173b68;
+
+            padding: 17px;
+
+            border-radius: 8px;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        .analysis strong {
+            color: #173b68;
+        }
+
+        /* ================= DETAIL ================= */
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+
+            padding: 13px 0;
+
+            border-bottom: 1px solid #eee;
+
+            font-size: 13px;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+        }
+
+        .detail-value {
+            font-weight: bold;
+        }
+
+        /* ================= TRAINING ================= */
+
+        .training {
+            padding: 14px;
+
+            background: #f8fafc;
+
+            border: 1px solid #e5e7eb;
+
+            border-radius: 8px;
+
+            margin-bottom: 10px;
+        }
+
+        .training-name {
+            font-weight: bold;
+            font-size: 14px;
+
+            margin-bottom: 5px;
+        }
+
+        .training-text {
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* ================= BUTTON ================= */
+
+        .button {
+            display: inline-block;
+
+            background: #173b68;
+            color: white;
+
+            padding: 10px 16px;
+
+            border-radius: 6px;
+
+            text-decoration: none;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            margin-top: 12px;
+        }
+
+        .quiz-card {
+            background: white;
+            border-radius: 12px;
+            padding: 22px;
+            box-shadow: 0 2px 9px rgba(0,0,0,0.06);
+            margin-bottom: 22px;
+        }
+
+        .quiz-question {
+            padding: 14px 0;
+            border-top: 1px solid #eee;
+        }
+
+        .quiz-question:first-of-type {
+            border-top: none;
+        }
+
+        .quiz-option {
+            display: block;
+            margin-top: 8px;
+            color: #555;
+            font-size: 13px;
+        }
+
+        .quiz-submit {
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width: 850px) {
+
+            .sidebar {
+                width: 180px;
+            }
+
+            .summary {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            .header {
+                padding: 0 15px;
+            }
+
+            .logo {
+                font-size: 15px;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .summary {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+        }
+
+        /* ================= REFINED DASHBOARD ================= */
+
+        :root {
+            --navy: #102a43;
+            --blue: #1769aa;
+            --blue-soft: #eaf4fb;
+            --ink: #172b4d;
+            --muted: #64748b;
+            --line: #dbe5ee;
+            --canvas: #f5f8fb;
+        }
+
+        body {
+            background: var(--canvas);
+            color: var(--ink);
+            font-family: "Segoe UI", Tahoma, sans-serif;
+        }
+
+        .header {
+            height: 72px;
+            background: var(--navy);
+            padding: 0 38px;
+            border-bottom: 3px solid #2f9e5b;
+        }
+
+        .logo {
+            font-size: 20px;
+            letter-spacing: .2px;
+        }
+
+        .user {
+            border-radius: 6px;
+            padding: 8px 13px;
+            color: var(--navy);
+            font-size: 12px;
+        }
+
+        .layout {
+            min-height: calc(100vh - 72px);
+        }
+
+        .sidebar {
+            width: 238px;
+            padding: 30px 18px;
+            background: #fbfdff;
+            border-right: 1px solid var(--line);
+        }
+
+        .menu-item {
+            padding: 13px 14px;
+            margin-bottom: 8px;
+            color: #52657a;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        .menu-item.active,
+        .menu-item:hover {
+            background: var(--blue-soft);
+            color: var(--blue);
+        }
+
+        .content {
+            width: 100%;
+            max-width: 1360px;
+            padding: 42px clamp(20px, 4vw, 58px) 70px;
+        }
+
+        .page-title {
+            color: var(--navy);
+            font-size: clamp(26px, 3vw, 36px);
+            letter-spacing: -.5px;
+        }
+
+        .page-subtitle {
+            color: var(--muted);
+            margin-bottom: 34px;
+        }
+
+        .page-section {
+            margin-bottom: 48px;
+            scroll-margin-top: 25px;
+        }
+
+        .page-section.is-hidden {
+            display: none;
+        }
+
+        .section-heading {
+            margin-bottom: 18px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .section-kicker {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--blue);
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            color: var(--navy);
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .quiz-card,
+        .card,
+        .summary-card {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(16, 42, 67, .05);
+        }
+
+        .quiz-card {
+            padding: clamp(20px, 3vw, 32px);
+        }
+
+        .assessment-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 0 0 20px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .assessment-meta span {
+            padding: 6px 10px;
+            background: #f2f7fb;
+            border: 1px solid #dceaf3;
+            border-radius: 4px;
+        }
+
+        .quiz-card > .card-title {
+            color: var(--navy);
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        .quiz-question {
+            padding: 20px 0;
+            border-top: 1px solid #edf1f5;
+        }
+
+        .question-heading {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .question-index {
+            flex: 0 0 auto;
+            padding: 4px 7px;
+            color: var(--blue);
+            background: var(--blue-soft);
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            letter-spacing: .5px;
+        }
+
+        .quiz-question strong {
+            display: block;
+            color: var(--ink);
+            line-height: 1.5;
+        }
+
+        .quiz-option {
+            padding: 8px 10px;
+            margin-top: 5px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background .15s ease, border-color .15s ease;
+        }
+
+        .quiz-option:hover {
+            background: #f5f9fc;
+            border-color: #d4e5f0;
+        }
+
+        .quiz-option:has(input:checked) {
+            background: #eaf4fb;
+            border-color: #8fc3df;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .assessment-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .assessment-actions small {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .button {
+            background: var(--blue);
+            border-radius: 5px;
+            padding: 12px 18px;
+            transition: background .2s ease, transform .2s ease;
+        }
+
+        .button:hover {
+            background: #0d568f;
+            transform: translateY(-1px);
+        }
+
+        .summary-card {
+            border-top: 3px solid var(--blue);
+            box-shadow: none;
+        }
+
+        .summary-value {
+            color: var(--navy);
+        }
+
+        .card {
+            box-shadow: 0 5px 18px rgba(16, 42, 67, .04);
+        }
+
+        .card-title {
+            color: var(--navy);
+        }
+
+        .training-section {
+            margin-top: 6px;
+            padding-top: 6px;
+        }
+
+        .focus-intro {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 18px;
+            padding: 18px 20px;
+            background: #fff8ed;
+            border: 1px solid #f0dfbf;
+            border-left: 4px solid #d28a19;
+            border-radius: 7px;
+        }
+
+        .focus-intro strong {
+            display: block;
+            margin-bottom: 4px;
+            color: #7a4b08;
+            font-size: 15px;
+        }
+
+        .focus-intro p {
+            color: #765f3b;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .focus-count {
+            flex: 0 0 auto;
+            color: #8c5d13;
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .training-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .training-layout {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .weak-topics {
+            padding: 18px;
+            background: #f7fafc;
+            border: 1px solid #d8e5ee;
+            border-radius: 7px;
+        }
+
+        .weak-topics h3 {
+            margin-bottom: 13px;
+            color: var(--navy);
+            font-size: 14px;
+        }
+
+        .weak-topic {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 10px 0;
+            border-top: 1px solid #e2ebf2;
+            color: #52657a;
+            font-size: 12px;
+        }
+
+        .weak-topic strong {
+            color: #c62828;
+            font-size: 11px;
+        }
+
+        .training-mode > .section-heading,
+        .training-mode > .grid > div:first-child,
+        .training-mode > .grid > div:last-child > .card:first-child {
+            display: none;
+        }
+
+        .training-mode > .grid {
+            display: block;
+        }
+
+        .training-mode > .grid > div:last-child {
+            width: 100%;
+        }
+
+        .training {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 170px;
+            margin-bottom: 0;
+            padding: 18px;
+            background: #fbfdff;
+            border: 1px solid #d8e5ee;
+            border-top: 3px solid #1769aa;
+            border-radius: 7px;
+        }
+
+        .training-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 13px;
+        }
+
+        .training-name {
+            margin-bottom: 0;
+            color: var(--navy);
+            font-size: 15px;
+        }
+
+        .training-score {
+            flex: 0 0 auto;
+            color: #c62828;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .training-detail {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 13px;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .training-text {
+            margin-top: auto;
+            padding-top: 12px;
+            border-top: 1px solid #e2ebf2;
+            color: #52657a;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .no-focus {
+            padding: 22px;
+            color: #237a40;
+            background: #f0faf3;
+            border: 1px solid #ccebd5;
+            border-radius: 7px;
+            font-size: 13px;
+        }
+
+        .training-insight {
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .training-insight .card-title {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .wrong-answers {
+            margin-top: 24px;
+            padding-top: 22px;
+            border-top: 1px solid var(--line);
+        }
+
+        .wrong-answers-heading {
+            margin-bottom: 14px;
+        }
+
+        .wrong-answers-heading h3 {
+            margin-bottom: 4px;
+            color: var(--navy);
+            font-size: 16px;
+        }
+
+        .wrong-answers-heading p {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .wrong-answer {
+            margin-bottom: 10px;
+            padding: 14px 16px;
+            background: #fffafa;
+            border: 1px solid #f0d9d9;
+            border-left: 3px solid #c62828;
+            border-radius: 6px;
+        }
+
+        .review-category {
+            margin-bottom: 10px;
+            border: 1px solid #d8e5ee;
+            border-radius: 7px;
+            overflow: hidden;
+            background: #fbfdff;
+        }
+
+        .review-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .review-category summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px 16px;
+            cursor: pointer;
+            list-style: none;
+            color: var(--navy);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .review-category summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .review-category summary::after {
+            content: "+";
+            color: var(--blue);
+            font-size: 18px;
+            font-weight: 400;
+        }
+
+        .review-category[open] summary {
+            background: #f2f7fb;
+            border-bottom: 1px solid #d8e5ee;
+        }
+
+        .review-category[open] summary::after {
+            content: "-";
+        }
+
+        .review-category-body {
+            padding: 12px;
+        }
+
+        .review-count {
+            margin-left: auto;
+            padding: 4px 8px;
+            color: #c62828;
+            background: #fff0f0;
+            border-radius: 10px;
+            font-size: 10px;
+        }
+
+        .wrong-answer:last-child {
+            margin-bottom: 0;
+        }
+
+        .wrong-question {
+            margin-bottom: 10px;
+            color: var(--ink);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .answer-row {
+            display: grid;
+            grid-template-columns: minmax(95px, 120px) 1fr;
+            gap: 8px;
+            padding-top: 6px;
+            font-size: 12px;
+        }
+
+        .answer-label {
+            color: var(--muted);
+            font-weight: 600;
+        }
+
+        .answer-value.correct {
+            color: #237a40;
+            font-weight: 600;
+        }
+
+        .answer-value.incorrect {
+            color: #c62828;
+        }
+
+        .all-correct {
+            padding: 16px;
+            color: #237a40;
+            background: #f0faf3;
+            border: 1px solid #ccebd5;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
+        @media(max-width: 600px) {
+            .header {
+                padding: 0 18px;
+            }
+
+            .content {
+                padding-top: 28px;
+            }
+
+            .page-section {
+                margin-bottom: 36px;
+            }
+
+            .focus-intro {
+                align-items: flex-start;
+            }
+
+            .training-list {
+                grid-template-columns: 1fr;
+            }
+
+            .training-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        SkillSaarthi
+    </div>
+
+    <div class="user">
+        👤 Learner
+    </div>
+
+</header>
+
+
+<div class="layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <a href="#assessment" class="menu-item active" data-section="assessment">
+            📝 Competency Assessment
+        </a>
+
+        <a href="#skill-gap" class="menu-item" data-section="skill-gap">
+            📊 Skill Gap Analysis
+        </a>
+
+        <a href="#training" class="menu-item" data-section="training">
+            📚 Recommended Training
+        </a>
+
+    </aside>
+
+
+    <!-- ================= MAIN CONTENT ================= -->
+
+    <main class="content">
+
+
+        <h1 class="page-title">
+            {% if submitted %}Assessment Results{% else %}Competency Assessment{% endif %}
+        </h1>
+
+        <p class="page-subtitle">
+            Complete overview of your cybersecurity competency
+        </p>
+
+        <section id="assessment" class="page-section {% if submitted %}is-hidden{% endif %}">
+
+        <div class="section-heading">
+            <span class="section-kicker">01 / Assessment</span>
+            <h2>Measure your current capability</h2>
+            <p>Answer each question to establish a practical cybersecurity skills baseline.</p>
+        </div>
+
+        <form id="assessment-form" class="quiz-card" method="POST">
+
+            <div class="card-title">
+                Complete Assessment
+            </div>
+
+            <div class="assessment-meta">
+                <span>25 questions</span>
+                <span>5 skill areas</span>
+                <span>Basic to advanced competency</span>
+            </div>
+
+            {% for question in questions %}
+            {% set question_index = loop.index0 %}
+            <div class="quiz-question">
+                <div class="question-heading">
+                    <span class="question-index">Q{{ loop.index }}</span>
+                    <strong>{{ question.question }}</strong>
+                </div>
+
+                {% for option in question.options %}
+                <label class="quiz-option">
+                    <input
+                        type="radio"
+                        name="question_{{ question_index }}"
+                        value="{{ 'ABCD'[loop.index0] }}"
+                        required
+                    >
+                    {{ option }}
+                </label>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <div class="assessment-actions">
+                <small>Your answers are used to create your personal skill profile.</small>
+                <button class="button quiz-submit" type="submit">
+                    Submit Assessment
+                </button>
+            </div>
+
+        </form>
+
+        </section>
+
+
+        {% if submitted %}
+
+        <section id="skill-gap" class="page-section {% if not submitted %}is-hidden{% endif %}">
+
+        <div class="section-heading">
+            <span class="section-kicker">02 / Performance</span>
+            <h2>Understand your skill gap</h2>
+            <p>Review your strengths, current levels, and the capabilities that need attention.</p>
+        </div>
+
+        <!-- ================= SUMMARY ================= -->
+
+        <div class="summary">
+
+
+            <div class="summary-card">
+
+                <div class="summary-label">
+                    Overall Score
+                </div>
+
+                <div class="summary-value">
+                    {{ percentage }}%
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-label">
+                    Correct Answers
+                </div>
+
+                <div class="summary-value">
+                    {{ correct_answers }}/{{ total_questions }}
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-label">
+                    Strongest Skill
+                </div>
+
+                <div class="summary-value"
+                     style="font-size:20px">
+
+                    {{ strongest.name }}
+
+                </div>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <div class="summary-label">
+                    Focus Area
+                </div>
+
+                <div class="summary-value"
+                     style="font-size:20px">
+
+                    {{ weakest.name }}
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ================= TWO COLUMN ================= -->
+
+        <div class="grid">
+
+
+            <!-- ================= LEFT ================= -->
+
+            <div>
+
+
+                <!-- COMPETENCY -->
+
+                <div class="card">
+
+                    <div class="card-title">
+                        📊 Competency Overview
+                    </div>
+
+
+                    {% for skill in skill_results %}
+
+                    <div class="skill">
+
+
+                        <div class="skill-top">
+
+                            <span class="skill-name">
+                                {{ skill.name }}
+                            </span>
+
+                            <span class="skill-percentage">
+                                {{ skill.percentage }}%
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress">
+
+                            <div class="progress-bar"
+                                 style="width: {{ skill.percentage }}%;">
+                            </div>
+
+                        </div>
+
+
+                        <div class="skill-bottom">
+
+                            <span>
+                                Current:
+                                {{ skill.current_level }}
+                            </span>
+
+                            <span>
+                                Required:
+                                {{ skill.required_level }}
+                            </span>
+
+
+                            {% if skill.priority == "HIGH" %}
+
+                                <span class="badge high">
+                                    HIGH
+                                </span>
+
+                            {% elif skill.priority == "MEDIUM" %}
+
+                                <span class="badge medium">
+                                    MEDIUM
+                                </span>
+
+                            {% else %}
+
+                                <span class="badge no-gap">
+                                    NO GAP
+                                </span>
+
+                            {% endif %}
+
+                        </div>
+
+
+                    </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+
+                <!-- AI ANALYSIS -->
+
+                <div class="card">
+
+                    <div class="card-title">
+                        🔎 Performance Insight
+                    </div>
+
+
+                    <div class="analysis">
+
+                        <p>
+
+                            Your strongest competency is
+
+                            <strong>
+                                {{ strongest.name }}
+                            </strong>
+
+                            with a score of
+
+                            <strong>
+                                {{ strongest.percentage }}%
+                            </strong>.
+
+                        </p>
+
+
+                        <p>
+
+                            Your main improvement area is
+
+                            <strong>
+                                {{ weakest.name }}
+                            </strong>.
+
+                            This is the first area to review in your development plan.
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DETAILED ASSESSMENT -->
+
+                <div class="card">
+
+                    <div class="card-title">
+                        📋 Detailed Assessment
+                    </div>
+
+
+                    {% for skill in skill_results %}
+
+                    <div class="detail-row">
+
+                        <div>
+
+                            <strong>
+                                {{ skill.name }}
+                            </strong>
+
+                            <br>
+
+                            <span class="detail-label">
+                                Score: {{ skill.score }}/6
+                            </span>
+
+                        </div>
+
+
+                        <div style="text-align:right">
+
+                            <div class="detail-value">
+                                {{ skill.current_level }}
+                            </div>
+
+                            <span class="detail-label">
+                                Skill Gap: {{ skill.gap }}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ================= RIGHT ================= -->
+
+            <div>
+
+
+                <!-- RESULT SUMMARY -->
+
+                <div class="card">
+
+                    <div class="card-title">
+                        🎯 Assessment Summary
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span class="detail-label">
+                            Total Questions
+                        </span>
+
+                        <span class="detail-value">
+                            {{ total_questions }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span class="detail-label">
+                            Correct Answers
+                        </span>
+
+                        <span class="detail-value">
+                            {{ correct_answers }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span class="detail-label">
+                            Wrong Answers
+                        </span>
+
+                        <span class="detail-value">
+                            {{ wrong_answers }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-row">
+
+                        <span class="detail-label">
+                            Percentage
+                        </span>
+
+                        <span class="detail-value">
+                            {{ percentage }}%
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <section id="training" class="training-section page-section is-hidden">
+
+                <div class="section-heading">
+                    <span class="section-kicker">03 / Development</span>
+                    <h2>Build your development plan</h2>
+                    <p>Turn assessment results into focused next steps for professional growth.</p>
+                </div>
+
+                <!-- TRAINING -->
+
+                <div class="card">
+
+                    <div class="card-title">
+                        📚 Trainer Recommendations
+                    </div>
+
+
+                    <div class="focus-intro">
+                        <div>
+                            <strong>Focus areas below 50%</strong>
+                            <p>These topics need priority attention to reach the required competency level.</p>
+                        </div>
+                        <div class="focus-count">{{ focus_areas|length }}</div>
+                    </div>
+
+                    {% if focus_areas %}
+                    <div class="training-layout">
+                        <aside class="weak-topics">
+                            <h3>Weak Topics</h3>
+                            {% for skill in focus_areas %}
+                            <div class="weak-topic">
+                                <span>{{ skill.name }}</span>
+                                <strong>{{ skill.percentage }}%</strong>
+                            </div>
+                            {% endfor %}
+                        </aside>
+
+                        <div class="training-list">
+                            {% for skill in focus_areas %}
+                            <div class="training">
+                                <div class="training-top">
+                                    <div class="training-name">{{ skill.name }}</div>
+                                    <div class="training-score">{{ skill.percentage }}%</div>
+                                </div>
+
+                                <div class="training-detail">
+                                    <span>Current: {{ skill.current_level }}</span>
+                                    <span>Required: {{ skill.required_level }}</span>
+                                </div>
+
+                                <div class="training-text">
+                                    <strong>Recommended:</strong> {{ skill.recommendation }}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="no-focus">
+                        All competency areas are at or above 50%. No immediate focus training is required.
+                    </div>
+                    {% endif %}
+
+                    <div class="training-insight">
+                        <div class="card-title">
+                            ⭐ Training Focus
+                        </div>
+
+                        <p style="font-size:14px; line-height:1.7">
+
+                        Your strongest area is
+
+                        <strong>
+                            {{ strongest.name }}
+                        </strong>.
+
+                        Focus on improving
+
+                        <strong>
+                            {{ weakest.name }}
+                        </strong>
+
+                        to reduce your skill gap.
+
+                        </p>
+
+                        <a href="#training" class="button">
+                            Review Training Areas
+                        </a>
+                    </div>
+
+                    <div class="wrong-answers">
+                        <div class="wrong-answers-heading">
+                            <h3>Questions to Review</h3>
+                            <p>Review each missed question and compare your answer with the correct answer.</p>
+                        </div>
+
+                        {% if wrong_question_categories %}
+                            {% for category in wrong_question_categories %}
+                            <details class="review-category">
+                                <summary>
+                                    <span>{{ category.name }}</span>
+                                    <span class="review-count">{{ category.questions|length }} incorrect</span>
+                                </summary>
+                                <div class="review-category-body">
+                                    {% for item in category.questions %}
+                                    <div class="wrong-answer">
+                                        <div class="wrong-question">
+                                            <strong>Question {{ item.number }}:</strong> {{ item.question }}
+                                        </div>
+                                        <div class="answer-row">
+                                            <span class="answer-label">Your answer</span>
+                                            <span class="answer-value incorrect">{{ item.selected_answer }}</span>
+                                        </div>
+                                        <div class="answer-row">
+                                            <span class="answer-label">Correct answer</span>
+                                            <span class="answer-value correct">{{ item.correct_answer }}</span>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </details>
+                            {% endfor %}
+                        {% else %}
+                            <div class="all-correct">
+                                Excellent work. You answered every question correctly.
+                            </div>
+                        {% endif %}
+                    </div>
+
+                </div>
+
+                </section>
+
+
+            </div>
+
+
+        </div>
+
+        </section>
+
+        {% endif %}
+
+    </main>
+
+</div>
+
+</body>
+
+<script>
+    document.querySelectorAll("[data-section]").forEach(function (link) {
+        link.addEventListener("click", function (event) {
+            event.preventDefault();
+
+            var targetId = link.dataset.section;
+            document.querySelectorAll(".page-section").forEach(function (section) {
+                var trainingView = targetId === "training" && section.id === "skill-gap";
+                section.classList.toggle("is-hidden", section.id !== targetId && !trainingView);
+                section.classList.toggle("training-mode", trainingView);
+            });
+
+            document.querySelectorAll("[data-section]").forEach(function (item) {
+                item.classList.toggle("active", item === link);
+            });
+
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    });
+
+    var defaultSection = document.querySelector("#skill-gap:not(.is-hidden)")
+        ? "skill-gap"
+        : "assessment";
+    document.querySelectorAll("[data-section]").forEach(function (link) {
+        link.classList.toggle("active", link.dataset.section === defaultSection);
+    });
+</script>
+
+</html>

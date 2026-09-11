@@ -321,100 +321,36 @@ skill_scores = {
     "Incident Response": 0
 }
 
-total_score = 0
+def run_terminal_quiz():
+    total_score = 0
 
-print("\n===== SKILLSAARTHI CYBERSECURITY QUIZ =====")
-print("Total Questions:", len(questions))
-input("\nPress Enter to start...")
+    print("\n===== SKILLSAARTHI CYBERSECURITY QUIZ =====")
+    print("Total Questions:", len(questions))
+    input("\nPress Enter to start...")
 
-for index, q in enumerate(questions):
+    for index, q in enumerate(questions):
+        print("\nQuestion", index + 1, "of", len(questions))
+        print("Level:", level_names[q["level"]])
+        print(q["question"])
 
-    print("\nQuestion", index + 1, "of", len(questions))
-    print("Level:", level_names[q["level"]])
-    print(q["question"])
+        for i, option in enumerate(q["options"]):
+            print(chr(65 + i) + ".", option)
 
-    for i, option in enumerate(q["options"]):
-        print(chr(65 + i) + ".", option)
+        user_answer = input("Your answer (A/B/C/D): ").upper().strip()
 
-    user_answer = input("Your answer (A/B/C/D): ").upper().strip()
-
-    if user_answer == q["answer"]:
-        print("Correct!")
-        total_score += 1
-
-        if index < 6:
-            skill_scores["Python"] += 1
-        elif index < 12:
-            skill_scores["Linux"] += 1
-        elif index < 18:
-            skill_scores["Networking"] += 1
-        elif index < 24:
-            skill_scores["Web Security"] += 1
+        if user_answer == q["answer"]:
+            print("Correct!")
+            total_score += 1
         else:
-            skill_scores["Incident Response"] += 1
-    else:
-        print("Wrong!")
-        print("Correct Answer:", q["answer"])
+            print("Wrong!")
+            print("Correct Answer:", q["answer"])
 
-percentage = (total_score / len(questions)) * 100
+    print("\n===== FINAL RESULT =====")
+    print("Total Questions:", len(questions))
+    print("Correct Answers:", total_score)
+    print("Wrong Answers:", len(questions) - total_score)
+    print("Percentage:", round((total_score / len(questions)) * 100, 2), "%")
 
-print("\n===== FINAL RESULT =====")
-print("Total Questions:", len(questions))
-print("Correct Answers:", total_score)
-print("Wrong Answers:", len(questions) - total_score)
-print("Overall Score:", total_score, "/", len(questions))
-print("Percentage:", round(percentage, 2), "%")
 
-print("\n===== SKILL-WISE ASSESSMENT =====")
-
-for skill in skills:
-
-    score = skill_scores[skill]
-
-    if score >= 5:
-        current_level = 3
-    elif score >= 3:
-        current_level = 2
-    else:
-        current_level = 1
-
-    required = required_level[skill]
-    gap = required - current_level
-
-    if gap == 2:
-        priority = "HIGH"
-    elif gap == 1:
-        priority = "MEDIUM"
-    else:
-        priority = "NO GAP"
-
-    print("\nSkill:", skill)
-    print("Score:", score, "/ 6")
-    print("Current Level:", level_names[current_level])
-    print("Required Level:", level_names[required])
-    print("Skill Gap:", gap)
-    print("Priority:", priority)
-
-print("\n===== TRAINING RECOMMENDATION =====")
-
-for skill in skills:
-
-    score = skill_scores[skill]
-
-    if score >= 5:
-        current_level = 3
-    elif score >= 3:
-        current_level = 2
-    else:
-        current_level = 1
-
-    gap = required_level[skill] - current_level
-
-    if gap == 2:
-        print(skill, "-> Basic + Intermediate training recommended")
-    elif gap == 1:
-        print(skill, "-> Intermediate + Advanced training recommended")
-    else:
-        print(skill, "-> No immediate training required")
-
-print("\n===== ASSESSMENT COMPLETED =====")
+if __name__ == "__main__":
+    run_terminal_quiz()
